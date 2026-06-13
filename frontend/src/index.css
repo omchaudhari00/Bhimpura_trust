@@ -1,0 +1,119 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    background: #f6f1e8;
+    color: #14110f;
+  }
+
+  body {
+    @apply font-body antialiased;
+    overflow-x: hidden;
+  }
+
+  ::selection {
+    background: rgba(184, 149, 46, 0.25);
+    color: #14110f;
+  }
+}
+
+@layer components {
+  .page-shell {
+    @apply min-h-screen bg-cream text-ink;
+  }
+
+  .editorial-line {
+    @apply h-px w-full bg-gradient-to-r from-transparent via-gold/40 to-transparent;
+  }
+
+  .glass-nav {
+    background: rgba(246, 241, 232, 0.72);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center rounded-full border border-ink bg-ink px-8 py-3.5 text-[11px] font-medium uppercase tracking-editorial text-cream transition-all duration-300 hover:-translate-y-0.5 hover:bg-charcoal hover:shadow-[0_18px_40px_rgba(20,17,15,0.18)];
+  }
+
+  .btn-outline {
+    @apply inline-flex items-center justify-center rounded-full border border-ink/20 bg-transparent px-8 py-3.5 text-[11px] font-medium uppercase tracking-editorial text-ink transition-all duration-300 hover:border-ink hover:bg-ink hover:text-cream;
+  }
+
+  .section-label {
+    @apply text-[11px] font-medium uppercase tracking-wide text-mist;
+  }
+
+  .input-field {
+    @apply w-full rounded-2xl border border-ink/10 bg-white/70 px-4 py-3.5 text-sm text-ink outline-none transition-all duration-200 placeholder:text-mist/70 focus:border-gold focus:bg-white focus:ring-2 focus:ring-gold/15;
+  }
+
+  .modal-backdrop {
+    @apply fixed inset-0 z-[100] flex items-center justify-center bg-ink/55 p-4 backdrop-blur-sm;
+  }
+
+  .modal-panel {
+    @apply w-full max-w-lg rounded-[2rem] border border-white/20 bg-cream p-8 shadow-[0_30px_80px_rgba(20,17,15,0.28)];
+  }
+
+  /* --- YOUR NEW MAP HERO CODE STARTS HERE --- */
+  .map-hero {
+    @apply relative flex min-h-screen items-center overflow-hidden bg-[#f8f5ef] px-5 pt-28 md:px-8;
+  }
+
+  .map-hero-image {
+    position: absolute;
+    inset: 0;
+    width: 100%; 
+    z-index: 0;
+    background-image: url("/village-map.jpeg");
+    background-position: center right; 
+    background-size: cover; 
+    background-repeat: no-repeat;
+  }
+
+  /* Your new transparent PNG mask */
+  .map-hero::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    pointer-events: none;
+    background-image: url("/cloud-mask.png"); 
+    background-position: left center;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+
+  .map-hero-content {
+    @apply relative z-10 mr-auto w-full max-w-3xl py-24 lg:w-[48%];
+  }
+}
+
+.grain-overlay {
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+}
+
+/* Mobile Adjustments */
+@media (max-width: 900px) {
+  .map-hero {
+    align-items: flex-end;
+    min-height: 100svh;
+  }
+  .map-hero-content {
+    max-width: none;
+    padding-bottom: 7rem;
+  }
+  .map-hero::after {
+    /* For mobile, you might want to change the position so the clouds come from the bottom up */
+    background-position: bottom center; 
+  }
+}

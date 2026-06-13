@@ -1,0 +1,10 @@
+.env
+*.env
+.env.*
+node_modules/
+venv/
+.codex-venv/
+__pycache__/
+*.pyc
+db.sqlite3
+*.log
