@@ -1,3 +1,4 @@
+import React from "react";
 export default function Events() {
   return (
     <section className="mx-auto flex min-h-[70vh] max-w-4xl flex-col items-center justify-center px-5 pb-24 pt-36 text-center md:px-8">

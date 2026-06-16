@@ -14,4 +14,5 @@ class HomepageVisitsView(APIView):
 
 class HomepageTrackView(APIView):
     def get(self, request):
+        SiteStats.increment_homepage_visits()
         return Response({"status": "ok"})
