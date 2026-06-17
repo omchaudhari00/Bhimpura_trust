@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { api } from "../api/client";
 
@@ -10,11 +10,30 @@ const emptyForm = {
   photo: null,
 };
 
-export default function AddDonorModal({ open, onClose, onSuccess }) {
+export default function AddDonorModal({ open, onClose, onSuccess, initialData }) {
   const [form, setForm] = useState(emptyForm);
   const [preview, setPreview] = useState(null);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    if (open) {
+      if (initialData) {
+        setForm({
+          name: initialData.name || "",
+          amount_donated: initialData.amount_donated || "",
+          village: initialData.village || "",
+          current_place: initialData.current_place || "",
+          photo: null,
+        });
+        setPreview(initialData.photo_url);
+      } else {
+        setForm(emptyForm);
+        setPreview(null);
+      }
+      setError("");
+    }
+  }, [initialData, open]);
 
   const updateField = (key, value) => {
     setForm((prev) => ({ ...prev, [key]: value }));
@@ -30,8 +49,13 @@ export default function AddDonorModal({ open, onClose, onSuccess }) {
     e.preventDefault();
     setError("");
 
-    if (!form.name || !form.amount_donated || !form.village || !form.current_place || !form.photo) {
-      setError("All fields are mandatory.");
+    if (!form.name || !form.amount_donated || !form.village || !form.current_place) {
+      setError("All text fields are mandatory.");
+      return;
+    }
+
+    if (!initialData && !form.photo) {
+      setError("Photo is required for new donors.");
       return;
     }
 
@@ -40,11 +64,17 @@ export default function AddDonorModal({ open, onClose, onSuccess }) {
     formData.append("amount_donated", form.amount_donated);
     formData.append("village", form.village.trim());
     formData.append("current_place", form.current_place.trim());
-    formData.append("photo", form.photo);
+    if (form.photo) {
+      formData.append("photo", form.photo);
+    }
 
     try {
       setLoading(true);
-      await api.addDonor(formData);
+      if (initialData) {
+        await api.updateDonor(initialData.id, formData);
+      } else {
+        await api.addDonor(formData);
+      }
       setForm(emptyForm);
       setPreview(null);
       onSuccess();
@@ -74,22 +104,24 @@ export default function AddDonorModal({ open, onClose, onSuccess }) {
           onClick={handleClose}
         >
           <motion.div
-            className="modal-panel"
+            className="modal-panel max-h-[90vh] overflow-y-auto"
             initial={{ opacity: 0, y: 24, scale: 0.98 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 24, scale: 0.98 }}
             onClick={(e) => e.stopPropagation()}
           >
             <p className="section-label">Admin</p>
-            <h2 className="mt-2 font-display text-4xl text-ink">Add Donor</h2>
+            <h2 className="mt-2 font-display text-4xl text-ink">
+              {initialData ? "Edit Donor" : "Add Donor"}
+            </h2>
             <p className="mt-2 text-sm text-mist">
-              All fields are required before saving.
+              {initialData ? "Update donor information." : "All fields are required before saving."}
             </p>
 
             <form onSubmit={handleSubmit} className="mt-8 space-y-4">
               <input
-                className="input-field"
-                placeholder="Donor name"
+                className="input-field font-gujarati"
+                placeholder="Donor name (in Gujarati)"
                 value={form.name}
                 onChange={(e) => updateField("name", e.target.value)}
               />
@@ -142,7 +174,7 @@ export default function AddDonorModal({ open, onClose, onSuccess }) {
                   Cancel
                 </button>
                 <button type="submit" className="btn-primary flex-1" disabled={loading}>
-                  {loading ? "Saving..." : "Add Donor"}
+                  {loading ? "Saving..." : "Save Donor"}
                 </button>
               </div>
             </form>

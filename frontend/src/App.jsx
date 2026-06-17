@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
+import ReactGA from "react-ga4";
 import { AuthProvider } from "./context/AuthContext";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
@@ -10,11 +11,31 @@ import Events from "./pages/Events";
 import Donors from "./pages/Donors";
 import Admin from "./pages/Admin";
 
-function ScrollToTop() {
+// --- Google Analytics Setup ---
+const TRACKING_ID = "G-23W0QNF5X9";
+const isLiveWebsite = true;
+
+if (isLiveWebsite) {
+  ReactGA.initialize(TRACKING_ID);
+}
+// ------------------------------
+
+function ScrollAndTrackToTop() {
   const { pathname } = useLocation();
+
   useEffect(() => {
+    // 1. Scroll to the top
     window.scrollTo(0, 0);
+
+    // 2. Track the pageview
+    if (isLiveWebsite) {
+      ReactGA.send({
+        hitType: "pageview",
+        page: pathname
+      });
+    }
   }, [pathname]);
+
   return null;
 }
 
@@ -23,7 +44,7 @@ export default function App() {
     <AuthProvider>
       <div className="page-shell">
         <div className="grain-overlay" />
-        <ScrollToTop />
+        <ScrollAndTrackToTop />
         <Navbar />
         <main>
           <Routes>

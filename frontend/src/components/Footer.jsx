@@ -1,6 +1,15 @@
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { api } from "../api/client";
 
 export default function Footer() {
+  const [visits, setVisits] = useState(null);
+
+  useEffect(() => {
+    api.getHomepageVisits()
+      .then((data) => setVisits(data.total_count))
+      .catch(() => {});
+  }, []);
   return (
     <footer className="border-t border-ink/8 bg-parchment/50">
       <div className="mx-auto flex max-w-7xl flex-col gap-6 px-5 py-12 md:flex-row md:items-end md:justify-between md:px-8">
@@ -13,14 +22,13 @@ export default function Footer() {
             dedication.
           </p>
         </div>
-        <div className="flex flex-col gap-3 text-sm text-earth md:items-end">
-          <Link to="/donors" className="transition hover:text-gold">
-            Donor Recognition
-          </Link>
-          <Link to="/admin" className="text-xs uppercase tracking-editorial text-mist transition hover:text-ink">
-            Admin
-          </Link>
-        </div>
+        
+        {visits !== null && (
+          <div className="text-left md:text-right">
+            <span className="block text-[10px] font-bold uppercase tracking-[0.2em] text-mist/70 mb-1">Total Visits</span>
+            <span className="font-display text-2xl text-ink">{visits}</span>
+          </div>
+        )}
       </div>
     </footer>
   );
