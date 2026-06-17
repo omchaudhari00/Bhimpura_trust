@@ -1,37 +1,26 @@
-# Virtual environments
-Backend/venv/
-Backend/.codex-venv/
-venv/
-.venv/
-env/
-
-# Python cache
-**/__pycache__/
-*.pyc
-
-# Databases
-*.sqlite3
-db.sqlite3
-Backend/db_data/
-
-# Environment variables / Secrets
+# General
+.DS_Store
 .env
 .env.*
-!.env.example
 
-# Log files
-*.log
-Backend/*.log
-frontend/*.log
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+venv/
+env/
+.venv/
+.codex-venv/
+*.sqlite3
 
-# Node dependencies
+# Node / Frontend
 node_modules/
-frontend/node_modules/
-
-# Build outputs
 dist/
-frontend/dist/
+build/
+.npm/
 
-# OS/System files
-.DS_Store
-Thumbs.db
+# IDEs and Tools
+.idea/
+.vscode/
+*.swp
+*.swo
