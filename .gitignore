@@ -12,6 +12,7 @@ env/
 # Databases
 *.sqlite3
 db.sqlite3
+Backend/db_data/
 
 # Environment variables / Secrets
 .env
