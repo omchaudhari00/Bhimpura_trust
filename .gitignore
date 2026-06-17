@@ -1,10 +1,36 @@
-.env
-*.env
-.env.*
-node_modules/
+# Virtual environments
+Backend/venv/
+Backend/.codex-venv/
 venv/
-.codex-venv/
-__pycache__/
+.venv/
+env/
+
+# Python cache
+**/__pycache__/
 *.pyc
+
+# Databases
+*.sqlite3
 db.sqlite3
+
+# Environment variables / Secrets
+.env
+.env.*
+!.env.example
+
+# Log files
 *.log
+Backend/*.log
+frontend/*.log
+
+# Node dependencies
+node_modules/
+frontend/node_modules/
+
+# Build outputs
+dist/
+frontend/dist/
+
+# OS/System files
+.DS_Store
+Thumbs.db

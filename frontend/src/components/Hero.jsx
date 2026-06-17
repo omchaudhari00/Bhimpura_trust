@@ -1,3 +1,4 @@
+import React from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 
@@ -5,7 +6,7 @@ export default function Hero() {
   return (
     <section className="map-hero">
       <div className="map-hero-image" />
-      
+
       <div className="map-hero-content">
         <motion.p
           initial={{ opacity: 0, y: 20 }}
@@ -22,7 +23,7 @@ export default function Hero() {
           transition={{ duration: 0.9, delay: 0.1 }}
           className="hero-title font-gujarati text-5xl font-semibold leading-[1.05] tracking-tight text-ink sm:text-6xl md:text-7xl lg:text-[5.5rem]"
         >
-          સંકલ્પ સેવા<br/>સમર્પણ
+          સંકલ્પ સેવા<br />સમર્પણ
           <br />
           <em className="font-medium not-italic text-gold">ચેરીટેબલ ટ્રસ્ટ</em>
         </motion.h1>
@@ -42,8 +43,8 @@ export default function Hero() {
           transition={{ duration: 0.9, delay: 0.34 }}
           className="mt-12 flex flex-col items-start gap-4 sm:flex-row"
         >
-          <Link to="/donors" className="btn-primary text-sm px-10 py-4">
-            View Donors List
+          <Link to="/donors" className="btn-primary font-gujarati text-sm px-10 py-4">
+            દાતાશ્રી
           </Link>
           <Link to="/about" className="btn-outline text-sm px-10 py-4">
             About the Trust

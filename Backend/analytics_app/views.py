@@ -6,7 +6,6 @@ from core_api.permissions import IsAdminUser
 
 
 class HomepageVisitsView(APIView):
-    permission_classes = [IsAdminUser]
 
     def get(self, request):
         return Response({"total_count": SiteStats.get_homepage_visits()})
@@ -14,4 +13,5 @@ class HomepageVisitsView(APIView):
 
 class HomepageTrackView(APIView):
     def get(self, request):
+        SiteStats.increment_homepage_visits()
         return Response({"status": "ok"})

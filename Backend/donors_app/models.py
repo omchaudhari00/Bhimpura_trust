@@ -40,6 +40,17 @@ class Donor:
         return [serialize_donor(doc) for doc in cursor]
 
     @staticmethod
+    def get_by_id(donor_id):
+        return get_db()[DONORS_COLLECTION].find_one({"_id": ObjectId(donor_id)})
+
+    @staticmethod
+    def update(donor_id, update_data):
+        result = get_db()[DONORS_COLLECTION].update_one(
+            {"_id": ObjectId(donor_id)}, {"$set": update_data}
+        )
+        return result.modified_count > 0
+
+    @staticmethod
     def delete(donor_id):
         result = get_db()[DONORS_COLLECTION].delete_one({"_id": ObjectId(donor_id)})
         return result.deleted_count > 0

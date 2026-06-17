@@ -1,4 +1,6 @@
+import React, { useState } from "react";
 import { motion } from "framer-motion";
+import { useAuth } from "../context/AuthContext";
 
 function formatAmount(amount) {
   return new Intl.NumberFormat("en-IN", {
@@ -8,7 +10,10 @@ function formatAmount(amount) {
   }).format(amount);
 }
 
-export default function DonorCard({ donor, rank }) {
+export default function DonorCard({ donor, rank, onEdit, onDelete, hideMenu = false }) {
+  const { loggedIn } = useAuth();
+  const [menuOpen, setMenuOpen] = useState(false);
+
   return (
     <motion.article
       layout
@@ -22,6 +27,39 @@ export default function DonorCard({ donor, rank }) {
         {String(rank).padStart(2, "0")}
       </div>
 
+      {loggedIn && !hideMenu && (
+        <div className="absolute right-5 bottom-5 z-20">
+          <button 
+            type="button" 
+            onClick={() => setMenuOpen(!menuOpen)} 
+            className="flex h-8 w-8 flex-col items-center justify-center gap-[3px] rounded-full bg-white border border-ink/10 transition hover:bg-parchment"
+          >
+            <span className="h-[3px] w-[3px] rounded-full bg-ink"></span>
+            <span className="h-[3px] w-[3px] rounded-full bg-ink"></span>
+            <span className="h-[3px] w-[3px] rounded-full bg-ink"></span>
+          </button>
+          
+          {menuOpen && (
+            <div className="absolute bottom-full right-0 mb-2 flex w-28 flex-col overflow-hidden rounded-xl border border-ink/10 bg-white shadow-lg">
+              <button 
+                type="button" 
+                onClick={() => { setMenuOpen(false); onEdit?.(donor); }}
+                className="px-4 py-2.5 text-left text-sm font-medium text-ink transition hover:bg-parchment"
+              >
+                Edit
+              </button>
+              <button 
+                type="button" 
+                onClick={() => { setMenuOpen(false); onDelete?.(donor.id); }}
+                className="px-4 py-2.5 text-left text-sm font-medium text-red-600 transition hover:bg-red-50"
+              >
+                Delete
+              </button>
+            </div>
+          )}
+        </div>
+      )}
+
       <div className="flex flex-col gap-5 sm:flex-row sm:items-center">
         <div className="relative mx-auto h-36 w-36 shrink-0 overflow-hidden rounded-[1.5rem] border border-gold/20 bg-parchment sm:mx-0">
           <img
@@ -33,13 +71,13 @@ export default function DonorCard({ donor, rank }) {
 
         <div className="flex-1 text-center sm:text-left">
           <p className="text-[11px] uppercase tracking-editorial text-mist">Donor</p>
-          <h3 className="mt-1 font-display text-3xl font-medium text-ink">
+          <h3 className="mt-1 font-gujarati text-3xl font-medium text-ink">
             {donor.name}
           </h3>
-          <p className="mt-3 font-display text-2xl text-gold">
+          <p className="mt-2 text-2xl font-bold text-gold">
             {formatAmount(donor.amount_donated)}
           </p>
-          <div className="mt-4 grid gap-2 text-sm text-earth sm:grid-cols-2">
+          <div className="mt-4 grid gap-2 text-sm text-earth sm:grid-cols-2 pr-10">
             <p>
               <span className="text-mist">Village:</span> {donor.village}
             </p>

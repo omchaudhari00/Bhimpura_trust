@@ -59,6 +59,20 @@
     @apply w-full max-w-lg rounded-[2rem] border border-white/20 bg-cream p-8 shadow-[0_30px_80px_rgba(20,17,15,0.28)];
   }
 
+  .modal-panel::-webkit-scrollbar {
+    width: 6px;
+  }
+  .modal-panel::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  .modal-panel::-webkit-scrollbar-thumb {
+    background-color: rgba(20, 17, 15, 0.15);
+    border-radius: 20px;
+  }
+  .modal-panel::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(20, 17, 15, 0.25);
+  }
+
   /* --- YOUR NEW MAP HERO CODE STARTS HERE --- */
   .map-hero {
     @apply relative flex min-h-screen items-center overflow-hidden bg-[#f8f5ef] px-5 pt-28 md:px-8;

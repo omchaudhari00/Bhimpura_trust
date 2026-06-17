@@ -56,5 +56,29 @@ export const api = {
 
   getEventPhotos: () => request("/api/event-photos/"),
 
+  addEventPhoto: (formData) =>
+    request("/api/event-photos/", {
+      method: "POST",
+      body: formData,
+    }),
+
+  deleteEventPhoto: (id) =>
+    request(`/api/event-photos/${id}/`, {
+      method: "DELETE",
+    }),
+
   trackHomepage: () => request("/api/analytics/track/"),
+
+  getHomepageVisits: () => request("/api/analytics/homepage-visits/"),
+
+  updateDonor: (id, formData) =>
+    request(`/api/donors/${id}/`, {
+      method: "PUT",
+      body: formData,
+    }),
+
+  deleteDonor: (id) =>
+    request(`/api/donors/${id}/`, {
+      method: "DELETE",
+    }),
 };

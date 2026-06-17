@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import DonorCard from "../components/DonorCard";
 import AddDonorModal from "../components/AddDonorModal";
 import { api } from "../api/client";
@@ -9,6 +9,7 @@ export default function Donors() {
   const [donors, setDonors] = useState([]);
   const [loading, setLoading] = useState(true);
   const [modalOpen, setModalOpen] = useState(false);
+  const [editingDonor, setEditingDonor] = useState(null);
 
   const loadDonors = useCallback(() => {
     setLoading(true);
@@ -21,7 +22,23 @@ export default function Donors() {
 
   useEffect(() => {
     loadDonors();
-  }, [loadDonors]);
+  }, [loadDonors, loggedIn]);
+
+  const handleEdit = (donor) => {
+    setEditingDonor(donor);
+    setModalOpen(true);
+  };
+
+  const handleDelete = async (donorId) => {
+    if (window.confirm("Are you sure you want to delete this donor?")) {
+      try {
+        await api.deleteDonor(donorId);
+        loadDonors();
+      } catch (err) {
+        alert(err.message);
+      }
+    }
+  };
 
   return (
     <section className="mx-auto max-w-5xl px-5 pb-24 pt-36 md:px-8">
@@ -31,15 +48,18 @@ export default function Donors() {
           <h1 className="mt-4 font-display text-6xl text-ink md:text-7xl">
             Donors List
           </h1>
-          <p className="mt-4 max-w-2xl text-earth">
-            Listed from highest donation to lowest, honoring every contributor
-            to the trust.
-          </p>
         </div>
 
         {loggedIn && (
           <div className="flex flex-wrap gap-3">
-            <button type="button" className="btn-primary" onClick={() => setModalOpen(true)}>
+            <button 
+              type="button" 
+              className="btn-primary" 
+              onClick={() => {
+                setEditingDonor(null);
+                setModalOpen(true);
+              }}
+            >
               Add Donor
             </button>
             <button type="button" className="btn-outline" onClick={logout}>
@@ -60,13 +80,20 @@ export default function Donors() {
       ) : (
         <div className="space-y-6">
           {donors.map((donor, index) => (
-            <DonorCard key={donor.id} donor={donor} rank={index + 1} />
+            <DonorCard 
+              key={donor.id} 
+              donor={donor} 
+              rank={index + 1} 
+              onEdit={handleEdit}
+              onDelete={handleDelete}
+            />
           ))}
         </div>
       )}
 
       <AddDonorModal
         open={modalOpen}
+        initialData={editingDonor}
         onClose={() => setModalOpen(false)}
         onSuccess={loadDonors}
       />

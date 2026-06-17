@@ -1,4 +1,5 @@
-from django.http import HttpResponseRedirect
+import urllib.request
+from django.http import HttpResponse, HttpResponseRedirect
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.views import APIView
@@ -107,4 +108,16 @@ class EventPhotoDownloadView(APIView):
         photo = EventPhoto.get_by_id(photo_id)
         if not photo:
             return Response({"detail": "Not found."}, status=status.HTTP_404_NOT_FOUND)
-        return HttpResponseRedirect(photo["image_url"])
+            
+        image_url = photo["image_url"]
+        extension = image_url.split(".")[-1]
+        
+        req = urllib.request.Request(image_url, headers={'User-Agent': 'Mozilla/5.0'})
+        try:
+            with urllib.request.urlopen(req) as response:
+                img_data = response.read()
+            res = HttpResponse(img_data, content_type=response.headers.get('Content-Type', 'image/jpeg'))
+            res['Content-Disposition'] = f'attachment; filename="gallery_photo_{photo_id}.{extension}"'
+            return res
+        except Exception:
+            return HttpResponseRedirect(image_url)
