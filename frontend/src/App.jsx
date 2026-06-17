@@ -12,8 +12,8 @@ import Donors from "./pages/Donors";
 import Admin from "./pages/Admin";
 
 // --- Google Analytics Setup ---
-const TRACKING_ID = "G-23W0QNF5X9";
-const isLiveWebsite = true;
+const TRACKING_ID = import.meta.env.VITE_GA_TRACKING_ID || "";
+const isLiveWebsite = import.meta.env.PROD && Boolean(TRACKING_ID);
 
 if (isLiveWebsite) {
   ReactGA.initialize(TRACKING_ID);

@@ -8,9 +8,15 @@ load_dotenv()
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = os.getenv("SECRET_KEY")
-
 DEBUG = os.getenv("DEBUG", "False").lower() == "true"
+
+SECRET_KEY = os.getenv("SECRET_KEY")
+if not SECRET_KEY:
+    if DEBUG:
+        SECRET_KEY = "django-insecure-dev-fallback-key-for-local-testing"
+    else:
+        from django.core.exceptions import ImproperlyConfigured
+        raise ImproperlyConfigured("The SECRET_KEY environment variable is required in production.")
 
 ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS", "localhost,127.0.0.1").split(",")
 
@@ -55,12 +61,38 @@ USE_TZ = True
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 MONGODB_URI = os.getenv("MONGODB_URI")
+if not MONGODB_URI:
+    if DEBUG:
+        MONGODB_URI = "mongodb://localhost:27017"
+    else:
+        from django.core.exceptions import ImproperlyConfigured
+        raise ImproperlyConfigured("The MONGODB_URI environment variable is required in production.")
+
 MONGODB_DB_NAME = os.getenv("MONGODB_DB_NAME")
+if not MONGODB_DB_NAME:
+    if DEBUG:
+        MONGODB_DB_NAME = "bhimpura_trust"
+    else:
+        from django.core.exceptions import ImproperlyConfigured
+        raise ImproperlyConfigured("The MONGODB_DB_NAME environment variable is required in production.")
 
 AWS_ACCESS_KEY_ID = os.getenv("AWS_ACCESS_KEY_ID")
 AWS_SECRET_ACCESS_KEY = os.getenv("AWS_SECRET_ACCESS_KEY")
 AWS_STORAGE_BUCKET_NAME = os.getenv("AWS_STORAGE_BUCKET_NAME")
 AWS_S3_REGION_NAME = os.getenv("AWS_S3_REGION_NAME")
+
+if not DEBUG:
+    missing_aws = [
+        var for var, val in {
+            "AWS_ACCESS_KEY_ID": AWS_ACCESS_KEY_ID,
+            "AWS_SECRET_ACCESS_KEY": AWS_SECRET_ACCESS_KEY,
+            "AWS_STORAGE_BUCKET_NAME": AWS_STORAGE_BUCKET_NAME,
+            "AWS_S3_REGION_NAME": AWS_S3_REGION_NAME,
+        }.items() if not val
+    ]
+    if missing_aws:
+        from django.core.exceptions import ImproperlyConfigured
+        raise ImproperlyConfigured(f"The following AWS environment variables are missing in production: {', '.join(missing_aws)}")
 
 REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": [
