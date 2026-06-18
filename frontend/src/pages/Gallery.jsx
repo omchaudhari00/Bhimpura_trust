@@ -147,7 +147,7 @@ export default function Gallery() {
               </div>
               <div className="mt-6 flex w-full justify-center gap-4 pb-2">
                 <a 
-                  href={`/api/event-photos/${selectedPhoto.id}/download/`} 
+                  href={`${import.meta.env.VITE_API_URL || ""}/api/event-photos/${selectedPhoto.id}/download/`} 
                   target="_blank" 
                   rel="noreferrer"
                   className="btn-primary border-white/20 bg-white/10 text-white hover:border-gold hover:bg-gold hover:text-ink"
