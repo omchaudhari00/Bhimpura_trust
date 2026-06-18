@@ -13,7 +13,7 @@ import Admin from "./pages/Admin";
 
 // --- Google Analytics Setup ---
 const TRACKING_ID = "G-23W0QNF5X9";
-const isLiveWebsite = true;
+const isLiveWebsite = window.location.hostname !== "localhost";
 
 if (isLiveWebsite) {
   ReactGA.initialize(TRACKING_ID);

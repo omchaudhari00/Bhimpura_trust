@@ -328,9 +328,9 @@ const EVENTS = [
     time: "રાત્રે 8:30 કલાકે",
     location: "ભીમપુરા નવરાત્રી ચોક",
     telecast: "YouTube · STAR LIVE",
-    youtubeUrl: "https://www.youtube.com/watch?v=TDl1LgWjN8A&list=RDGMEM_6azG-gbwFIpRtH6PATXiQVMTDl1LgWjN8A&start_radio=1",
+    youtubeUrl: "https://m.youtube.com/watch?v=yfZa5iVTadc&list=WL&index=1&pp=iAQBsAgC&ra=m",
     // ↓ Set this to the YouTube video/live ID on event day, e.g. "dQw4w9WgXcQ"
-    youtubeVideoId: "TDl1LgWjN8A",
+    youtubeVideoId: "yfZa5iVTadc",
     // ↓ Fallback: your channel ID (used if youtubeVideoId is blank)
     youtubeChannelId: "",
     // ↓ Flip to true on the day of the event to show the embedded player automatically
