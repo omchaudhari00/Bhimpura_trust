@@ -23,6 +23,7 @@ ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS", "localhost,127.0.0.1").split(",")
 INSTALLED_APPS = [
     "django.contrib.contenttypes",
     "django.contrib.auth",
+    "django.contrib.staticfiles",
     "rest_framework",
     "corsheaders",
     "core_api.apps.CoreApiConfig",
@@ -42,7 +43,16 @@ CORS_ALLOW_ALL_ORIGINS = True
 
 ROOT_URLCONF = "core_api.urls"
 
-TEMPLATES = []
+TEMPLATES = [
+    {
+        "BACKEND": "django.template.backends.django.DjangoTemplates",
+        "DIRS": [],
+        "APP_DIRS": True,
+        "OPTIONS": {
+            "context_processors": [],
+        },
+    }
+]
 
 WSGI_APPLICATION = "core_api.wsgi.application"
 
