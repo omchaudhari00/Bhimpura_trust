@@ -1,32 +1,37 @@
 Watching for file changes with StatReloader
-[16/Jun/2026 20:19:05] "GET /api/analytics/track/ HTTP/1.1" 200 15
-[16/Jun/2026 20:19:05] "GET /api/analytics/homepage-visits/ HTTP/1.1" 200 18
-[16/Jun/2026 20:19:05] "GET /api/analytics/homepage-visits/ HTTP/1.1" 200 18
-[16/Jun/2026 20:19:05] "GET /api/analytics/track/ HTTP/1.1" 200 15
-[16/Jun/2026 20:19:05] "GET /api/donors/ HTTP/1.1" 200 2
-[16/Jun/2026 20:19:05] "GET /api/donors/ HTTP/1.1" 200 2
-[16/Jun/2026 20:19:14] "GET /api/donors/ HTTP/1.1" 200 2
-[16/Jun/2026 20:19:14] "GET /api/donors/ HTTP/1.1" 200 2
-[16/Jun/2026 20:19:20] "GET /api/analytics/homepage-visits/ HTTP/1.1" 200 18
-[16/Jun/2026 20:19:20] "GET /api/analytics/homepage-visits/ HTTP/1.1" 200 18
-[16/Jun/2026 20:19:34] "POST /api/auth/login/ HTTP/1.1" 200 649
-[16/Jun/2026 20:19:34] "GET /api/donors/ HTTP/1.1" 200 2
-[16/Jun/2026 20:19:34] "GET /api/donors/ HTTP/1.1" 200 2
-[16/Jun/2026 20:20:25] "POST /api/donors/ HTTP/1.1" 201 288
-[16/Jun/2026 20:20:25] "GET /api/donors/ HTTP/1.1" 200 284
-[16/Jun/2026 20:20:46] "GET /api/analytics/track/ HTTP/1.1" 200 15
-[16/Jun/2026 20:20:46] "GET /api/donors/ HTTP/1.1" 200 284
-[16/Jun/2026 20:20:46] "GET /api/analytics/track/ HTTP/1.1" 200 15
-[16/Jun/2026 20:20:46] "GET /api/donors/ HTTP/1.1" 200 284
-[16/Jun/2026 20:20:53] "GET /api/event-photos/ HTTP/1.1" 200 2
-[16/Jun/2026 20:20:53] "GET /api/event-photos/ HTTP/1.1" 200 2
-[16/Jun/2026 20:21:09] "GET /api/analytics/track/ HTTP/1.1" 200 15
-[16/Jun/2026 20:21:09] "GET /api/donors/ HTTP/1.1" 200 284
-[16/Jun/2026 20:21:09] "GET /api/donors/ HTTP/1.1" 200 284
-[16/Jun/2026 20:21:09] "GET /api/analytics/track/ HTTP/1.1" 200 15
-[16/Jun/2026 20:21:18] "GET /api/donors/ HTTP/1.1" 200 284
-[16/Jun/2026 20:21:18] "GET /api/donors/ HTTP/1.1" 200 284
-[16/Jun/2026 20:21:28] "GET /api/analytics/track/ HTTP/1.1" 200 15
-[16/Jun/2026 20:21:28] "GET /api/donors/ HTTP/1.1" 200 284
-[16/Jun/2026 20:21:28] "GET /api/analytics/track/ HTTP/1.1" 200 15
-[16/Jun/2026 20:21:28] "GET /api/donors/ HTTP/1.1" 200 284
+Exception in thread django-main-thread:
+Traceback (most recent call last):
+  File "C:\Users\Hp\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\threading.py", line 1075, in _bootstrap_inner
+    self.run()
+  File "C:\Users\Hp\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\threading.py", line 1012, in run
+    self._target(*self._args, **self._kwargs)
+  File "C:\Users\Hp\Desktop\Bhimpura Trust(2)\Backend\.codex-venv\Lib\site-packages\django\utils\autoreload.py", line 64, in wrapper
+    fn(*args, **kwargs)
+  File "C:\Users\Hp\Desktop\Bhimpura Trust(2)\Backend\.codex-venv\Lib\site-packages\django\core\management\commands\runserver.py", line 139, in inner_run
+    handler = self.get_handler(*args, **options)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Hp\Desktop\Bhimpura Trust(2)\Backend\.codex-venv\Lib\site-packages\django\contrib\staticfiles\management\commands\runserver.py", line 35, in get_handler
+    return StaticFilesHandler(handler)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Hp\Desktop\Bhimpura Trust(2)\Backend\.codex-venv\Lib\site-packages\django\contrib\staticfiles\handlers.py", line 75, in __init__
+    self.base_url = urlparse(self.get_base_url())
+                             ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Hp\Desktop\Bhimpura Trust(2)\Backend\.codex-venv\Lib\site-packages\django\contrib\staticfiles\handlers.py", line 30, in get_base_url
+    utils.check_settings()
+  File "C:\Users\Hp\Desktop\Bhimpura Trust(2)\Backend\.codex-venv\Lib\site-packages\django\contrib\staticfiles\utils.py", line 49, in check_settings
+    raise ImproperlyConfigured(
+django.core.exceptions.ImproperlyConfigured: You're using the staticfiles app without having set the required STATIC_URL setting.
+Exception ignored in atexit callback: <function _shutdown_resources at 0x0000012FCFF34EA0>
+Traceback (most recent call last):
+  File "C:\Users\Hp\Desktop\Bhimpura Trust(2)\Backend\.codex-venv\Lib\site-packages\pymongo\monitor.py", line 482, in _shutdown_resources
+    shutdown()
+  File "C:\Users\Hp\Desktop\Bhimpura Trust(2)\Backend\.codex-venv\Lib\site-packages\pymongo\periodic_executor.py", line 198, in _shutdown_executors
+    executor.join(1)
+  File "C:\Users\Hp\Desktop\Bhimpura Trust(2)\Backend\.codex-venv\Lib\site-packages\pymongo\periodic_executor.py", line 116, in join
+    self._thread.join(timeout)
+  File "C:\Users\Hp\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\threading.py", line 1153, in join
+    self._wait_for_tstate_lock(timeout=max(timeout, 0))
+  File "C:\Users\Hp\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\threading.py", line 1169, in _wait_for_tstate_lock
+    if lock.acquire(block, timeout):
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+KeyboardInterrupt: 

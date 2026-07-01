@@ -1,0 +1,40 @@
+[2m4:51:03 PM[22m [31m[1m[vite][22m[39m [31mhttp proxy error: /api/analytics/track/[39m
+Error: connect ECONNREFUSED 127.0.0.1:8000
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1637:16)
+[2m4:51:03 PM[22m [31m[1m[vite][22m[39m [31mhttp proxy error: /api/donors/[39m
+Error: connect ECONNREFUSED 127.0.0.1:8000
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1637:16)
+[2m4:51:03 PM[22m [31m[1m[vite][22m[39m [31mhttp proxy error: /api/analytics/homepage-visits/[39m
+Error: connect ECONNREFUSED 127.0.0.1:8000
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1637:16)
+[2m4:51:03 PM[22m [31m[1m[vite][22m[39m [31mhttp proxy error: /api/analytics/track/[39m
+Error: connect ECONNREFUSED 127.0.0.1:8000
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1637:16)
+[2m4:51:03 PM[22m [31m[1m[vite][22m[39m [31mhttp proxy error: /api/donors/[39m
+Error: connect ECONNREFUSED 127.0.0.1:8000
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1637:16)
+[2m4:51:03 PM[22m [31m[1m[vite][22m[39m [31mhttp proxy error: /api/analytics/homepage-visits/[39m
+Error: connect ECONNREFUSED 127.0.0.1:8000
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1637:16)
+[2m4:51:09 PM[22m [31m[1m[vite][22m[39m [31mhttp proxy error: /api/analytics/homepage-visits/[39m
+Error: connect ECONNREFUSED 127.0.0.1:8000
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1637:16)
+[2m4:51:09 PM[22m [31m[1m[vite][22m[39m [31mhttp proxy error: /api/analytics/homepage-visits/[39m
+Error: connect ECONNREFUSED 127.0.0.1:8000
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1637:16)
+[2m4:51:09 PM[22m [31m[1m[vite][22m[39m [31mhttp proxy error: /api/donors/[39m
+Error: connect ECONNREFUSED 127.0.0.1:8000
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1637:16)
+[2m4:51:09 PM[22m [31m[1m[vite][22m[39m [31mhttp proxy error: /api/donors/[39m
+Error: connect ECONNREFUSED 127.0.0.1:8000
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1637:16)
+[2m4:51:13 PM[22m [31m[1m[vite][22m[39m [31mhttp proxy error: /api/event-photos/[39m
+Error: connect ECONNREFUSED 127.0.0.1:8000
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1637:16)
+[2m4:51:13 PM[22m [31m[1m[vite][22m[39m [31mhttp proxy error: /api/event-photos/[39m
+Error: connect ECONNREFUSED 127.0.0.1:8000
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1637:16)
+[2m4:52:14 PM[22m [31m[1m[vite][22m[39m [31mhttp proxy error: /api/event-photos/[39m
+Error: connect ECONNREFUSED 127.0.0.1:8000
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1637:16)
+^C
