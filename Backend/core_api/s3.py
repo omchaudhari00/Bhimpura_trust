@@ -5,12 +5,12 @@ from django.conf import settings
 
 
 ALLOWED_EXTENSIONS = {".jpg", ".jpeg", ".png"}
-MAX_FILE_SIZE = 5 * 1024 * 1024
+MAX_FILE_SIZE = 10 * 1024 * 1024
 
 
 def validate_image_file(uploaded_file):
     if uploaded_file.size > MAX_FILE_SIZE:
-        raise ValueError("File size exceeds 5MB limit.")
+        raise ValueError("File size exceeds 10MB limit.")
 
     name = uploaded_file.name.lower()
     if not any(name.endswith(ext) for ext in ALLOWED_EXTENSIONS):

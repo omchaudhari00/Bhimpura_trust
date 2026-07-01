@@ -158,7 +158,7 @@ export default function AddDonorModal({ open, onClose, onSuccess, initialData })
                   <span className="mb-2 text-3xl text-gold">+</span>
                 )}
                 <span className="text-sm text-earth">Upload donor photo</span>
-                <span className="mt-1 text-xs text-mist">JPG or PNG, max 5MB</span>
+                <span className="mt-1 text-xs text-mist">JPG or PNG, max 10MB</span>
                 <input
                   type="file"
                   accept=".jpg,.jpeg,.png"

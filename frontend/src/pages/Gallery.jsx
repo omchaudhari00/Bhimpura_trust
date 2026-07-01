@@ -109,6 +109,7 @@ export default function Gallery() {
               <img
                 src={photo.image_url}
                 alt="Trust event"
+                loading="lazy"
                 className="w-full object-cover transition duration-700 group-hover:scale-[1.03]"
               />
             </motion.div>

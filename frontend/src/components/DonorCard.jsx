@@ -65,6 +65,7 @@ export default function DonorCard({ donor, rank, onEdit, onDelete, hideMenu = fa
           <img
             src={donor.photo_url}
             alt={donor.name}
+            loading="lazy"
             className="h-full w-full object-cover transition duration-700 group-hover:scale-105"
           />
         </div>
