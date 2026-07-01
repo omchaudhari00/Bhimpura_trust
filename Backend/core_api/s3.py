@@ -5,12 +5,16 @@ from django.conf import settings
 
 
 ALLOWED_EXTENSIONS = {".jpg", ".jpeg", ".png"}
-MAX_FILE_SIZE = 10 * 1024 * 1024
+MAX_FILE_SIZE_DEFAULT = 10 * 1024 * 1024
+MAX_FILE_SIZE_DONORS = 5 * 1024 * 1024
 
 
-def validate_image_file(uploaded_file):
-    if uploaded_file.size > MAX_FILE_SIZE:
-        raise ValueError("File size exceeds 10MB limit.")
+def validate_image_file(uploaded_file, folder):
+    max_size = MAX_FILE_SIZE_DONORS if folder == "donors" else MAX_FILE_SIZE_DEFAULT
+    limit_mb = 5 if folder == "donors" else 10
+
+    if uploaded_file.size > max_size:
+        raise ValueError(f"File size exceeds {limit_mb}MB limit.")
 
     name = uploaded_file.name.lower()
     if not any(name.endswith(ext) for ext in ALLOWED_EXTENSIONS):
@@ -18,7 +22,7 @@ def validate_image_file(uploaded_file):
 
 
 def upload_to_s3(uploaded_file, folder):
-    validate_image_file(uploaded_file)
+    validate_image_file(uploaded_file, folder)
 
     extension = uploaded_file.name.rsplit(".", 1)[-1].lower()
     key = f"{folder}/{uuid.uuid4()}.{extension}"
